@@ -1,7 +1,7 @@
 Company Name: Automatic Reality Ltd.
 
 Company Mission: Merge Artificial Intelligence and the human mind using non invasive methods
-in order to improve our intelligence and perception.
+in order to improve our intelligence and perception in an every day basis by the use of our cognitive extensions.
 
 Company Product:
 
@@ -11,7 +11,45 @@ Company Product:
 	to make people's life more enjoyable, stress free and focus on what really matters for all.
 
     ForMate is a new concept merging Computer Vision and automation making the customer experience smooth like silk in
-    computers and in the real life becoming an important must have aid for the brain.
+    computers and in the real life becoming an important must have aid for our minds.
+
+    ForMate not only auto fills forms for you learning from your previous input but our innovative approach makes forms
+    obsolete and drive computers to the future making them really work for the people.
+
+    No information is shared between your device and ForMate and you have the full control of your own information.
+
+
+
+    How does it work ?
+
+    Think of ForMate as a window glass in front of your computer monitor. This glass is able to recognize the image you are seeing,
+    the text you are reading through, buttons in the user interface, windows, and elements in the screen in order to minimize the
+    need for your input by generating a user interface in real time displayed on the window glass.
+
+    AR CORETECH is the technology that makes ForMate possible is based upon the integration of three basic concepts,
+    Augmented Reality, A Camera and Computer Vision detecting image features and characteristics according our different
+    available Cognitive Extensions. ForMate is a Cognitive Extension from AR CORETECH  It processes information and gives you
+    suggestions and ideas on what to do (hence our so called Cognitive Extensions).
+
+
+
+
+    Benefits
+
+    *   Our Cognitive Extension software makes you smarter and gives you the ability to execute knowledge downloaded to your
+    devices as if it was an external brain that cooperates with yours at your service.
+    *   No Chemicals, no side effects.
+    *   Not Invasive.
+    *   Minimizes the need for expensive software integrations as we can make all applications speak natural language, and our AR CORETECH
+    foundation enables you to analyze, correlate, memorize, take and dispatch actions when is required.
+    *   Boosted conversion rates for Merchants who eliminate their web forms and turn to us. Less carts abandoned due to
+    the many things you ask.
+    *   HR Companies boosting the number of applicants as quite often this type of business tend to ask many things.
+    *   Less headaches with passwords and authentications.
+
+
+
+
 
 
 

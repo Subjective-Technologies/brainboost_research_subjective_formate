@@ -1,5 +1,5 @@
-# importing the required libraries 
-
+# importing the required libraries
+import threading
 
 from PyQt5.QtCore import *
 from PyQt5 import QtCore
@@ -21,10 +21,13 @@ class Window(QMainWindow):
     def initialize_screen_monitor(self):
         self.screen_monitor.monitor_screen(self)
 
+    def initialize_mouse_monitor(self):
+        self.mouse_around_area_updater.shoot_around_mouse(self)
+
     def __init__(self, w, h):
         super().__init__()
         # set the title
-        self.screen_monitor = ARMonitorChangeDetector()
+
         self.screenshooter_last_output = ""
         self.setWindowFlags(
             QtCore.Qt.WindowStaysOnTopHint |
@@ -44,11 +47,19 @@ class Window(QMainWindow):
             ))
 
         # show all the widgets
-        self.initialize_screen_monitor()
+        self.screen_monitor = ARMonitorChangeDetector()
+        screen_monitor_thread = threading.Thread(target=self.initialize_screen_monitor, daemon=True)
+        screen_monitor_thread.start()
+
+        self.mouse_around_area_updater = ARTextShooter()
+        mouse_monitor_thread = threading.Thread(target=self.initialize_mouse_monitor, daemon=True)
+        mouse_monitor_thread.start()
+
         self.show()
 
-    def buttonize(self, area, content_to_buttonize):
+    def buttonize(self, content_to_buttonize):
         self.screenshooter_last_output = content_to_buttonize
+        self.update()
 
     def paintEvent(self, event):
 
@@ -74,7 +85,7 @@ class Window(QMainWindow):
                 pybutton.setStyleSheet(
                     "background-color: rgb(" + (str(r()) + "," + str(r()) + "," + str(r())) + ");opacity:0.2;")
                 # pybutton.setStyleSheet("margin:0px;")
-                pybutton.move(int(word[0][0] / 2), int(word[0][1] / 2))
+                pybutton.move(int(word[0][0]), int(word[0][1]))
                 pybutton.resize((int(word[0][2] / 2) - int(word[0][0] / 2)),
                                 (int(word[0][3] / 2) - int(word[0][1] / 2)))
                 pybutton.clicked.connect(self.clickButtonMethod)
@@ -88,15 +99,11 @@ class Window(QMainWindow):
         button_references = []
 
     def clickButtonMethod(self):
-        print("Button Clicked");
+        print("Button Clicked")
 
 
 def settings_dialog():
     print("Settings clicked...")
-
-
-
-
 
 
 button_references = []
@@ -136,8 +143,6 @@ print('Available: %d x %d' % (rect.width(), rect.height()))
 
 # create the instance of our Window
 window = Window(size.width(), size.height())
-
-
 
 # start the app
 sys.exit(App.exec())

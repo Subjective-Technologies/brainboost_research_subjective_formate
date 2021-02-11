@@ -17,6 +17,8 @@ import time
 import json
 import re
 import io
+import pyautogui
+
 
 
 class ARTextShooter():
@@ -81,6 +83,48 @@ class ARTextShooter():
         return (rects, confidences)
 
 
+
+    def shoot_around_mouse(self,window):
+
+
+        rows_per_screen = 8
+        screenWidth, screenHeight = pyautogui.size()  # Get the size of the primary monitor.
+
+        def to_global_coordinates(button_rect, mouse_x=None, mouse_y=None):
+            row_height = int(screenHeight/rows_per_screen)
+            current_row_number = int(screenHeight/mouse_y)
+            previous_rows_sum_height = int(current_row_number*row_height)
+            button_rect[0][1] = button_rect[0][1] + previous_rows_sum_height
+
+
+            return button_rect;
+
+        def row_number_to_global_coordinates(rownumber):
+            row_height_in_pixels = screenHeight/rows_per_screen
+            return (0,row_height_in_pixels*rows_per_screen)
+
+
+        while True:
+            currentMouseX, currentMouseY = pyautogui.position()  # Get the XY position of the mouse.
+            print("Mouse position:" + str(currentMouseX) + "," + str(currentMouseY))
+            screen_row_number = int(currentMouseY/(screenHeight/rows_per_screen))     # We divide the screen in 8 rows and have priority to update the row where the mouse is present and the one before and the one after
+            print("Screen row number: "+str(screen_row_number))
+            area_around_mouse_width = screenWidth*2
+            area_around_mouse_height = (screenHeight*2/rows_per_screen)
+
+            area_around_mouse_centered_position = row_number_to_global_coordinates(screen_row_number)
+            area_around_mouse_bbox = (area_around_mouse_centered_position[0], area_around_mouse_centered_position[1], area_around_mouse_width,area_around_mouse_height)
+            image_around_mouse = pyautogui.screenshot(region=area_around_mouse_bbox)
+            # image_around_mouse.show()
+            start = time.time()
+            content_to_buttonize = self.shoot(image=image_around_mouse)
+            content_to_buttonize_parsed_json = json.loads(content_to_buttonize)
+            content_to_buttonize_parsed_json_global_coordinates = list(map(lambda button_rect: to_global_coordinates(button_rect=button_rect,mouse_x=currentMouseX, mouse_y=currentMouseY), content_to_buttonize_parsed_json))
+            end = time.time()
+            print("Time OCR: " + str(end - start))
+            window.buttonize(content_to_buttonize)
+            #cv2.imshow("Text Detection", image_around_mouse)
+            #cv2.waitKey(0)
 
     def shoot(self, image=None, rects=None):
         # load the input image and grab the image dimensions
