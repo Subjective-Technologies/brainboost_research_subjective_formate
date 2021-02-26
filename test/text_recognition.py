@@ -9,6 +9,7 @@ import pytesseract
 import argparse
 import cv2
 import math
+import time
 
 pytesseract.pytesseract.tesseract_cmd = r'tesseract'
 
@@ -72,7 +73,7 @@ def decode_predictions(scores, geometry):
 
 
 # load the input image and grab the image dimensions
-image = cv2.imread("../images/scr_20210131203233.jpg")
+image = cv2.imread("allfin.png")
 orig = image.copy()
 (origH, origW) = image.shape[:2]
 print(origH, origW)
@@ -143,7 +144,10 @@ for (startX, startY, endX, endY) in boxes:
     # (3) an OEM value, in this case, 7 which implies that we are
     # treating the ROI as a single line of text
 
+    start = time.time()
     text = pytesseract.image_to_string(roi, config='-l eng --oem 1 --psm 7')
+    end = time.time()
+    print(str(end - start) + ",")
     # add the bounding box coordinates and OCR'd text to the list
     # of results
     results.append(((startX, startY, endX, endY), text))
