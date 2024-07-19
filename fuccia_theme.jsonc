@@ -1,0 +1,78 @@
+{
+    "name": "CustomPinkTheme",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#FF52FF",
+        "editor.foreground": "#000000",
+        "editorCursor.foreground": "#000000",
+        "editor.lineHighlightBackground": "#FF94FF",
+        "editor.selectionBackground": "#FFD700",
+        "editor.inactiveSelectionBackground": "#FFA500",
+        "editorIndentGuide.background": "#000000",
+        "editorIndentGuide.activeBackground": "#FFFFFF"
+    },
+    "tokenColors": [
+        {
+            "scope": [
+                "comment",
+                "punctuation.definition.comment",
+                "string.comment"
+            ],
+            "settings": {
+                "foreground": "#006400"
+            }
+        },
+        {
+            "scope": [
+                "constant",
+                "entity.name.constant",
+                "variable.other.constant",
+                "variable.language"
+            ],
+            "settings": {
+                "foreground": "#8B0000"
+            }
+        },
+        {
+            "scope": [
+                "entity",
+                "entity.name",
+                "entity.other",
+                "entity.name.function",
+                "entity.name.tag",
+                "entity.name.section"
+            ],
+            "settings": {
+                "foreground": "#00008B"
+            }
+        },
+        {
+            "scope": [
+                "keyword",
+                "storage",
+                "storage.type"
+            ],
+            "settings": {
+                "foreground": "#FF4500"
+            }
+        },
+        {
+            "scope": "string",
+            "settings": {
+                "foreground": "#FFD700"
+            }
+        },
+        {
+            "scope": "support",
+            "settings": {
+                "foreground": "#8A2BE2"
+            }
+        },
+        {
+            "scope": "variable",
+            "settings": {
+                "foreground": "#000000"
+            }
+        }
+    ]
+}
